@@ -6,4 +6,6 @@ EXPOSE 3000
 
 # Start
 WORKDIR /app/backend
-ENTRYPOINT [ "npm", "run", "start" ]
+# ENTRYPOINT [ "npm", "run", "start" ]
+CMD ["sleep", "infinity"]
+

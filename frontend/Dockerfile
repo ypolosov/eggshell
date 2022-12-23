@@ -6,4 +6,5 @@ EXPOSE 8080
 
 # Start
 WORKDIR /app/frontend
-ENTRYPOINT [ "npm", "run", "start" ]
+# ENTRYPOINT [ "npm", "run", "start" ]
+CMD ["sleep", "infinity"]
