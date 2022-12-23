@@ -5,5 +5,5 @@ FROM node:16-alpine
 EXPOSE 8080
 
 # Start
-WORKDIR /home/app/frontend
+WORKDIR /app/frontend
 ENTRYPOINT [ "npm", "run", "start" ]

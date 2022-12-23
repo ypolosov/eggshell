@@ -3,7 +3,7 @@ services:
   my-app-frontend:
     build: ./frontend
     volumes:
-      - eggshell-volume:/home/app
+      - eggshell-volume:/app
     container_name: frontend-container
     networks:
       - eggshell-network
@@ -15,7 +15,7 @@ services:
   my-app-backend:
     build: ./backend
     volumes:
-      - eggshell-volume:/home/app
+      - eggshell-volume:/app
     container_name: backend-container
     networks:
       - eggshell-network
