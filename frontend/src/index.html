@@ -1,0 +1,28 @@
+<html>
+
+<body onload="requestServer();">
+    <demo id="demo"></demo>
+</body>
+<script language="javascript">
+    function requestServer() {
+        //create XMLHttpRequest object
+        const xhr = new XMLHttpRequest()
+        //open a get request with the remote server URL
+        xhr.open("GET", "http://localhost:3000")
+        //send the Http request
+        xhr.send()
+
+        //EVENT HANDLERS
+
+        //triggered when the response is completed
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                document.getElementById("demo").innerHTML = xhr.responseText;
+            } else if (xhr.status === 404) {
+                document.getElementById("demo").innerHTML = 'Failed!!!';
+            }
+        }
+    }
+</script>
+
+</html>

@@ -1,11 +1,8 @@
 {
-    "name": "frontend",
-    "version": "0.2.0",
-    "dependencies": {
-
-    },
-    "scripts": {
-      "start": "echo 'Start the frontend'"
-    }
+  "name": "frontend",
+  "version": "0.2.0",
+  "dependencies": {},
+  "scripts": {
+    "start": "node src/index.js"
   }
-  
+}

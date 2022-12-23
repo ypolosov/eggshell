@@ -5,7 +5,7 @@
 
     },
     "scripts": {
-      "start": "echo 'Start the backend'"
+      "start": "node src/index.js"
     }
   }
   
