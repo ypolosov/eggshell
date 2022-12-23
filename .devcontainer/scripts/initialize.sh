@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 #######
+# open issue https://github.com/microsoft/vscode-remote-release/issues/4024?ysclid=lbz6geepsn205383988
 find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \; | xargs ssh-add
 
 #######
