@@ -7,5 +7,5 @@ FROM mcr.microsoft.com/devcontainers/typescript-node:16
 
 # Copy the full repository into the /workspaces directory
 # This will then get mounted into the shared app volume
-WORKDIR /workspaces
-COPY . .
+# WORKDIR /workspaces
+# COPY . .

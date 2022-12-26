@@ -2,11 +2,12 @@ version: "3.8"
 services:
   my-app-frontend:
     build: ./frontend
-    # volumes:
+    volumes:
+      - .:/app
     #   - eggshell-volume:/app
     container_name: frontend-container
-    networks:
-      - eggshell-network
+    # networks:
+    #   - eggshell-network
     ports:
       - 8080:8080
     # Needed to keep the container from exiting
@@ -14,18 +15,18 @@ services:
 
   my-app-backend:
     build: ./backend
-    # volumes:
+    volumes:
+      - .:/app
     #   - eggshell-volume:/app
     container_name: backend-container
-    networks:
-      - eggshell-network
+    # networks:
+    #   - eggshell-network
     ports:
       - 3000:3000
-
 # volumes:
 #   eggshell-volume:
 #     external: true
 
-networks:
-  eggshell-network:
-    external: true
+# networks:
+#   eggshell-network:
+#     external: true

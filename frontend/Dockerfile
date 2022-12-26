@@ -5,7 +5,7 @@ FROM node:16-alpine
 EXPOSE 8080
 
 # Start
-WORKDIR /app/frontend
-COPY . /app/frontend
+WORKDIR /app
+# COPY . /app/frontend
 ENTRYPOINT [ "npm", "run", "start" ]
 # CMD ["sleep", "infinity"]

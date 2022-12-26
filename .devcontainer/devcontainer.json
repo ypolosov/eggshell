@@ -5,7 +5,7 @@
 	"dockerComposeFile": "docker-compose.dev-container.yml",
 	"service": "eggshell",
 	"shutdownAction": "stopCompose",
-	"workspaceFolder": "/workspaces",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
