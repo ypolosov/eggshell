@@ -6,6 +6,6 @@ EXPOSE 8080
 
 # Start
 WORKDIR /app
-# COPY . /app/frontend
-ENTRYPOINT [ "npm", "run", "start" ]
-# CMD ["sleep", "infinity"]
+# COPY . .
+# ENTRYPOINT [ "npm", "run", "start" ]
+CMD ["sleep", "infinity"]

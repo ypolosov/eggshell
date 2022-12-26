@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 services:
   eggshell:
@@ -6,14 +6,14 @@ services:
       context: ..
       dockerfile: .devcontainer/Dockerfile.dev-container
     container_name: eggshell-container
-    # init: true
+    init: true
     volumes:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
       # Update this to wherever you want VS Code to mount the folder of your project
       - ../..:/workspaces:cached
-    # networks:
-    #   - eggshell-network
+    networks:
+      - eggshell-network
     # Overrides default command so things don't shut down after the process ends.
     entrypoint: /usr/local/share/docker-init.sh
     command: sleep infinity
@@ -26,12 +26,12 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-# volumes:
-#   eggshell-volume:
-#     external: true
+volumes:
+  eggshell-volume:
+    external: true
 
 # This external network is shared with the main docker-compose.yml config
 # Ensures that services started from inside this dev container can all communicate
-# networks:
-#   eggshell-network:
-#     external: true
+networks:
+  eggshell-network:
+    external: true
