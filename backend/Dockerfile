@@ -7,6 +7,6 @@ EXPOSE 3000
 # Start
 WORKDIR /app
 # COPY . .
-# ENTRYPOINT [ "npm", "run", "start" ]
-CMD ["sleep", "infinity"]
+ENTRYPOINT [ "npm", "run", "start" ]
+# CMD ["sleep", "infinity"]
 
