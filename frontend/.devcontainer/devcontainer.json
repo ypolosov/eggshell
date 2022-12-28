@@ -1,0 +1,35 @@
+{
+    "name": "Frontend",
+    "dockerComposeFile": [
+        "../../docker-compose.yml",
+        "../../.devcontainer/docker-compose.dev-container.yml"
+    ],
+    "service": "frontend",
+    "shutdownAction": "none",
+    "extensions": [],
+    // Open the sub-folder with the source code
+    "workspaceFolder": "/workspace",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-from-docker:1": {
+            "version": "latest",
+            "enableNonRootDocker": "true",
+            "moby": "true"
+        }
+    },
+    // Configure tool-specific properties.
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": []
+        }
+    },
+    "initializeCommand": "../.devcontainer/scripts/initialize.sh || true",
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": ".devcontainer/scripts/post-create.sh || true",
+    "postStartCommand": ".devcontainer/scripts/post-start.sh || true"
+    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+    // "remoteUser": "root"
+}

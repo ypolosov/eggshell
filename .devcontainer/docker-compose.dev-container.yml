@@ -4,7 +4,7 @@ services:
   eggshell:
     build:
       context: .
-      dockerfile: .devcontainer/Dockerfile.dev-container
+      dockerfile: ./.devcontainer/Dockerfile.dev-container
     container_name: eggshell-container
     init: true
     volumes:

@@ -1,7 +1,9 @@
 version: "3.9"
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: ../.devcontainer/Dockerfile.dev-container
     volumes:
       # - .:/app
       - ./frontend:/workspace:cached
@@ -14,9 +16,13 @@ services:
     # stdin_open: true
     links:
       - backend
+    working_dir: /workspace
+    entrypoint: ["npm", "run", "start"]
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: ../.devcontainer/Dockerfile.dev-container
     volumes:
       # - .:/app
       - ./backend:/workspace:cached
@@ -25,6 +31,8 @@ services:
     #   - eggshell-network
     ports:
       - 3000:3000
+    working_dir: /workspace
+    entrypoint: ["npm", "run", "start"]
 # volumes:
 #   eggshell-volume:
 #     external: true
