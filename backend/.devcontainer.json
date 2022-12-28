@@ -1,0 +1,12 @@
+{
+    "name": "Backend",
+    "dockerComposeFile": [
+        "../docker-compose.yml",
+        "../.devcontainer/docker-compose.dev-container.yml"
+    ],
+    "service": "backend",
+    "shutdownAction": "none",
+    "extensions": [],
+    // Open the sub-folder with the source code
+    "workspaceFolder": "/workspace"
+}

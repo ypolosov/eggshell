@@ -4,7 +4,7 @@ services:
     build: ./frontend
     volumes:
       # - .:/app
-      - ./frontend:/app
+      - ./frontend:/workspace:cached
     container_name: frontend-container
     # networks:
     #   - eggshell-network
@@ -12,12 +12,14 @@ services:
       - 8080:8080
     # Needed to keep the container from exiting
     # stdin_open: true
+    links:
+      - backend
 
   backend:
     build: ./backend
     volumes:
       # - .:/app
-      - ./backend:/app
+      - ./backend:/workspace:cached
     container_name: backend-container
     # networks:
     #   - eggshell-network
