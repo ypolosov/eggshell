@@ -6,7 +6,7 @@ services:
       dockerfile: ../.devcontainer/Dockerfile.dev-container
     volumes:
       # - .:/app
-      - ./frontend:/workspace:cached
+      - .:/workspace:cached
     container_name: frontend-container
     # networks:
     #   - eggshell-network
@@ -16,7 +16,7 @@ services:
     # stdin_open: true
     links:
       - backend
-    working_dir: /workspace
+    working_dir: /workspace/frontend
     entrypoint: ["npm", "run", "start"]
 
   backend:
@@ -25,13 +25,13 @@ services:
       dockerfile: ../.devcontainer/Dockerfile.dev-container
     volumes:
       # - .:/app
-      - ./backend:/workspace:cached
+      - .:/workspace:cached
     container_name: backend-container
     # networks:
     #   - eggshell-network
     ports:
       - 3000:3000
-    working_dir: /workspace
+    working_dir: /workspace/backend
     entrypoint: ["npm", "run", "start"]
 # volumes:
 #   eggshell-volume:

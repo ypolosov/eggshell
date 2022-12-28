@@ -7,7 +7,7 @@
     "service": "backend",
     "shutdownAction": "none",
     // Open the sub-folder with the source code
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/workspace/backend",
     "features": {
         "ghcr.io/devcontainers/features/docker-from-docker:1": {
             "version": "latest",

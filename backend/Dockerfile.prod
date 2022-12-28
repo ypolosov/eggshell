@@ -5,7 +5,7 @@ FROM node:16-alpine
 EXPOSE 3000
 
 # Start
-WORKDIR /workspace
+WORKDIR /workspace/backend
 # COPY . .
 ENTRYPOINT [ "npm", "run", "start" ]
 # CMD ["sleep", "infinity"]
