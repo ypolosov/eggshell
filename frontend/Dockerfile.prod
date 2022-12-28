@@ -2,7 +2,7 @@
 FROM node:16-alpine
 
 # Expose port
-EXPOSE 8080
+EXPOSE 9090
 
 # Start
 WORKDIR /workspace/frontend

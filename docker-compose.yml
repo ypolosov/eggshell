@@ -11,7 +11,7 @@ services:
     # networks:
     #   - eggshell-network
     ports:
-      - 8080:8080
+      - 9090:9090
     # Needed to keep the container from exiting
     # stdin_open: true
     links:
@@ -30,7 +30,7 @@ services:
     # networks:
     #   - eggshell-network
     ports:
-      - 3000:3000
+      - 5000:5000
     working_dir: /workspace/backend
     entrypoint: ["npm", "run", "start"]
 # volumes:
