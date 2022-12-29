@@ -1,0 +1,5 @@
+// https://stackoverflow.com/questions/39171341/load-file-with-environment-variables-jenkins-pipeline
+// writeFile file: 'version.txt', text: 'version=6.22.0'
+// withEnv(readFile('version.txt').split('\n') as List) {
+//     sh "echo ${version}"
+// }

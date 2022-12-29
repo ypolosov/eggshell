@@ -1,0 +1,47 @@
+version: 2.1
+workflows:
+  pipeline-workflow:
+    jobs:
+      - pipeline-job
+jobs:
+  pipeline-job:
+    docker:
+      - image: ypolosov/agnostic-pipeline
+    environment:
+      PROJECT_DIR: app-1
+    working_directory: /app
+    resource_class: small
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - add_ssh_keys:
+          fingerprints:
+            - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
+
+      - run:
+          name: Ci
+          command: |
+            ./agnostic-pipeline/stages/01_ci.sh
+
+      - run:
+          name: Build
+          command: |
+            ./agnostic-pipeline/stages/02_build.sh
+
+      - run:
+          name: Test
+          command: |
+            ./agnostic-pipeline/stages/03_test.sh
+
+      - run:
+          name: Archive
+          command: |
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+            ./agnostic-pipeline/stages/04_archive.sh
+
+      - run:
+          name: Deploy
+          command: |
+            export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
+            ./agnostic-pipeline/stages/05_deploy.sh

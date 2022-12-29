@@ -1,0 +1,40 @@
+name: Pipeline workflow
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  pipeline-job:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_DIR: app-1
+    steps:
+      - uses: docker://ypolosov/agnostic-pipeline
+      - uses: actions/checkout@v3
+
+      - name: Config
+        run: |
+          cat ./app-1/.env >> $GITHUB_ENV
+
+      - name: Ci
+        run: |
+          ./agnostic-pipeline/stages/01_ci.sh
+
+      - name: Build
+        run: |
+          ./agnostic-pipeline/stages/02_build.sh
+
+      - name: Test
+        run: |
+          ./agnostic-pipeline/stages/03_test.sh
+
+      - name: Archive
+        run: |
+          export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+          ./agnostic-pipeline/stages/04_archive.sh
+
+      - name: Deploy
+        run: |
+          export SSH_PRIVATE_KEY="${{secrets.SSH_PRIVATE_KEY}}"
+          ./agnostic-pipeline/stages/05_deploy.sh
