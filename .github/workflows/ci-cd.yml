@@ -2,20 +2,20 @@ name: Pipeline workflow
 
 on:
   push:
-    branches: ["master"]
+    branches: ["main"]
 
 jobs:
   pipeline-job:
     runs-on: ubuntu-latest
     env:
-      PROJECT_DIR: app-1
+      PROJECT_DIR: backend
     steps:
-      - uses: docker://ypolosov/agnostic-pipeline
+      - uses: docker://mcr.microsoft.com/devcontainers/typescript-node:16
       - uses: actions/checkout@v3
 
       - name: Config
         run: |
-          cat ./app-1/.env >> $GITHUB_ENV
+          cat ./backend/.env >> $GITHUB_ENV
 
       - name: Ci
         run: |
