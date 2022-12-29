@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -e
 
-PROJECT_DIR=app-2
+PROJECT_DIR=backend
 
 docker build -t local-agnostic-pipeline -f ./agnostic-pipeline/Dockerfile.prod ./agnostic-pipeline \
 && docker run \
