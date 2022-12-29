@@ -5,6 +5,9 @@ services:
     build:
       context: .
       dockerfile: ./.devcontainer/Dockerfile.dev-container
+      cache_from: 
+        - docker.io/ypolosov/eggshell:1.1.1
+
     container_name: eggshell-container
     init: true
     volumes:
