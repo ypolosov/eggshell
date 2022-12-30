@@ -11,7 +11,7 @@ cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
 echo "Install devcontainers/cli..."
-npm install -g @devcontainers/cli
+npm install -g @devcontainers/cli@v0.24.1
 
 echo "Container registry login..."
 if [[ ! -z "${DOCKER_PASSWORD}" ]]
