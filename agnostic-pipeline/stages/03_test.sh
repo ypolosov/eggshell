@@ -10,4 +10,5 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
-bash ./agnostic-pipeline/stages/run-in-devcontainer.sh node "$PROJECT_DIR/index.spec.js"
+bash ./agnostic-pipeline/stages/run-in-devcontainer.sh \
+node "$PROJECT_DIR/index.spec.js"
