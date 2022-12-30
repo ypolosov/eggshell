@@ -21,3 +21,5 @@ npm ci
 
 devcontainer up --id-label ci-container=XXXXX --workspace-folder .
 
+devcontainer exec --id-label ci-container=XXXXX --workspace-folder . 
+

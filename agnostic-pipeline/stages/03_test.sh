@@ -10,4 +10,4 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
-node "$PROJECT_DIR/index.spec.js"
+bash ./run-in-devcontainer.sh `node "$PROJECT_DIR/index.spec.js"`
