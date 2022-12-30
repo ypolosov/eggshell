@@ -10,7 +10,7 @@ jobs:
     env:
       PROJECT_DIR: backend
     steps:
-      - uses: docker://mcr.microsoft.com/devcontainers/typescript-node:16
+      # - uses: docker://mcr.microsoft.com/devcontainers/typescript-node:16
       - uses: actions/checkout@v3
 
       - name: Config
