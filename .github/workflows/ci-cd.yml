@@ -42,3 +42,7 @@ jobs:
         run: |
           export SSH_PRIVATE_KEY="${{secrets.SSH_PRIVATE_KEY}}"
           ./agnostic-pipeline/stages/05_deploy.sh
+
+      - name: Archive CI
+        run: |
+          ./agnostic-pipeline/stages/06_archive-ci.sh
