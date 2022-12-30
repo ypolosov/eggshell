@@ -24,7 +24,7 @@ else
 fi
 
 echo "Build and push devcontainer..."
-devcontainer build --workspace-folder . --push true --image-name docker.io/ypolosov/eggshell:1.1.1
+devcontainer build --workspace-folder . --push true --platform "linux/amd64" --image-name docker.io/ypolosov/eggshell:1.1.1
 # docker push docker.io/ypolosov/eggshell:1.1.1
 
 npm ci
