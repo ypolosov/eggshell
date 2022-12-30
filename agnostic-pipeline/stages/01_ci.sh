@@ -17,7 +17,7 @@ echo "Container registry login..."
 if [[ ! -z "${DOCKER_PASSWORD}" ]]
 then
     # cloud running
-    echo "${DOCKER_PASSWORD?:}" | docker login docker.io -u "${ARCHIVE_ACCOUNT?:}" --password-stdin "${ARCHIVE_REGISTRY}"
+    echo "${DOCKER_PASSWORD?:}" | docker login -u "${ARCHIVE_ACCOUNT?:}" --password-stdin "${ARCHIVE_REGISTRY}" docker.io
 else
     # local running
     docker login docker.io
