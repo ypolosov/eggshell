@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-devcontainer exec --id-label ci-container=XXXXX --workspace-folder . "$@"
+devcontainer exec --id-label ci-container=XXXXX --workspace-folder . $@
