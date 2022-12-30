@@ -10,8 +10,8 @@ echo "Install devcontainers/cli..."
 npm install -g @devcontainers/cli
 
 echo "Build and push devcontainer..."
-export DOCKER_DEFAULT_PLATFORM=linux/amd64
-devcontainer build --workspace-folder . --push true --image-name docker.io/ypolosov/eggshell:1.1.1
+devcontainer build --workspace-folder . --image-name docker.io/ypolosov/eggshell:1.1.1
+docker push docker.io/ypolosov/eggshell:1.1.1
 
 npm ci
 
