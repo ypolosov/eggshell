@@ -17,9 +17,13 @@ jobs:
         run: |
           cat ./backend/.env >> $GITHUB_ENV
 
-      - name: Ci
+      - name: Registry login
         run: |
           export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+          ./agnostic-pipeline/stages/01_login.sh
+
+      - name: Ci
+        run: |
           ./agnostic-pipeline/stages/01_ci.sh
 
       - name: Build
@@ -32,7 +36,6 @@ jobs:
 
       - name: Archive
         run: |
-          export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
           ./agnostic-pipeline/stages/04_archive.sh
 
       - name: Deploy
