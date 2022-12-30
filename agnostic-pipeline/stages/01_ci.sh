@@ -19,5 +19,5 @@ docker push docker.io/ypolosov/eggshell
 
 npm ci
 
-devcontainer up --id-label XXXXX --workspace-folder .
+devcontainer up --id-label ci-container=XXXXX --workspace-folder .
 

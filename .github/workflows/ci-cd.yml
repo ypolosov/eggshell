@@ -28,11 +28,11 @@ jobs:
 
       - name: Build
         run: |
-          devcontainer exec --id-label XXXXX --workspace-folder . ./agnostic-pipeline/stages/02_build.sh
+          devcontainer exec --id-label ci-container=XXXXX --workspace-folder . ./agnostic-pipeline/stages/02_build.sh
 
       - name: Test
         run: |
-          devcontainer exec --id-label XXXXX --workspace-folder . ./agnostic-pipeline/stages/03_test.sh
+          devcontainer exec --id-label ci-container=XXXXX --workspace-folder . ./agnostic-pipeline/stages/03_test.sh
 
       - name: Archive
         run: |
