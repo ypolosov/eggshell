@@ -19,6 +19,7 @@ jobs:
 
       - name: Ci
         run: |
+          export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
           ./agnostic-pipeline/stages/01_ci.sh
 
       - name: Build
