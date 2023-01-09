@@ -1,6 +1,8 @@
 pipeline {
     agent { 
-        label 'docker'
+        docker {
+            image 'ypolosov/eggshell'
+        }
     }
     environment {
         PROJECT_DIR = 'backend'
