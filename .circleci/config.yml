@@ -6,10 +6,9 @@ workflows:
 jobs:
   pipeline-job:
     docker:
-      - image: ypolosov/agnostic-pipeline
+      - image: ubuntu:lts
     environment:
-      PROJECT_DIR: app-1
-    working_directory: /app
+      PROJECT_DIR: backend
     resource_class: small
     steps:
       - checkout
@@ -18,6 +17,12 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
+
+      - run:
+          name: Registry login
+          command: |
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+            ./agnostic-pipeline/stages/01_login.sh
 
       - run:
           name: Ci
@@ -37,7 +42,6 @@ jobs:
       - run:
           name: Archive
           command: |
-            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
             ./agnostic-pipeline/stages/04_archive.sh
 
       - run:
@@ -45,3 +49,8 @@ jobs:
           command: |
             export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
             ./agnostic-pipeline/stages/05_deploy.sh
+
+      - run:
+          name: Archive CI
+          command: |
+            ./agnostic-pipeline/stages/06_archive-ci.sh
