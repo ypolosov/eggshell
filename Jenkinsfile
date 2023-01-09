@@ -1,17 +1,29 @@
 pipeline {
     agent { 
         docker {
-            image 'ypolosov/agnostic-pipeline'
+            image 'ubuntu'
         }
     }
     environment {
-        PROJECT_DIR = 'app-1'
+        PROJECT_DIR = 'backend'
     }
     stages {
         stage('Config') {
             steps {
                 checkout scm
                 echo 'Hello Config'
+            }
+        }
+        stage('Registry login') {
+            environment { 
+                DOCKER_PASSWORD = credentials('docker-password')
+            }
+            steps {
+                echo 'Hello Registry login'
+                sh '''
+                    export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+                    ./agnostic-pipeline/stages/01_login.sh
+                '''
             }
         }
         stage('Ci') {
@@ -33,15 +45,9 @@ pipeline {
             }
         }
         stage('Archive') {
-            environment { 
-                DOCKER_PASSWORD = credentials('docker-password')
-            }
             steps {
                 echo 'Hello Archive'
-                sh '''
-                    export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-                    ./agnostic-pipeline/stages/04_archive.sh
-                '''
+                sh './agnostic-pipeline/stages/04_archive.sh'
             }
         }
         stage('Deploy') {
@@ -55,6 +61,12 @@ pipeline {
                         ./agnostic-pipeline/stages/05_deploy.sh
                     '''
                 }
+            }
+        }
+        stage('Archive CI') {
+            steps {
+                echo 'Hello Archive CI'
+                sh './agnostic-pipeline/stages/06_archive-ci.sh'
             }
         }
     }
