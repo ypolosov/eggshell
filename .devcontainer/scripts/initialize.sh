@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 #######
 # open issue https://github.com/microsoft/vscode-remote-release/issues/4024?ysclid=lbz6geepsn205383988

@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 pushd frontend
-bash .devcontainer/scripts/post-create.sh
+sh .devcontainer/scripts/post-create.sh
 popd
 
 pushd backend
-bash .devcontainer/scripts/post-create.sh
+sh .devcontainer/scripts/post-create.sh
 popd

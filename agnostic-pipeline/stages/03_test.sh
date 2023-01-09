@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -e
 
 echo
@@ -10,5 +10,5 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
-bash ./agnostic-pipeline/stages/run-in-devcontainer.sh \
+sh ./agnostic-pipeline/stages/run-in-devcontainer.sh \
 node "$PROJECT_DIR/index.spec.js"
