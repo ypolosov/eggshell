@@ -5,7 +5,7 @@ workflows:
       - pipeline-job
 jobs:
   pipeline-job:
-    docker:
+    machine:
       - image: ubuntu
     environment:
       PROJECT_DIR: backend
