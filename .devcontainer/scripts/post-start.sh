@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 pushd frontend
 sh .devcontainer/scripts/post-start.sh
