@@ -11,6 +11,6 @@ cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
 echo "Install devcontainers/cli..."
-npx install -g @devcontainers/cli
+npm install -g @devcontainers/cli
 
 devcontainer up --id-label ci-container=XXXXX --workspace-folder .

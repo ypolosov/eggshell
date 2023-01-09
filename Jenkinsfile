@@ -1,8 +1,6 @@
 pipeline {
     agent { 
-        docker {
-            image 'ims94/jenkins'
-        }
+        label 'docker'
     }
     environment {
         PROJECT_DIR = 'backend'
