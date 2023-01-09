@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         docker {
-            image 'docker:dind'
+            image 'ims94/jenkins'
         }
     }
     environment {
