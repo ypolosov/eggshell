@@ -9,7 +9,7 @@ jobs:
       image: ubuntu
     environment:
       PROJECT_DIR: backend
-    resource_class: small
+    # resource_class: small
     steps:
       - checkout
       # - setup_remote_docker:
