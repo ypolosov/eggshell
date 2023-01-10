@@ -3,7 +3,6 @@ pipeline {
         dockerfile {
             filename 'Dockerfile.dev-container'
             dir '.devcontainer'
-            label 'docker'
         }
     }
     environment {
