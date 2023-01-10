@@ -1,7 +1,7 @@
 pipeline {
     agent { 
         docker {
-            image 'docker:dind'
+            image 'mcr.microsoft.com/devcontainers/typescript-node:16'
         }
     }
     environment {
