@@ -8,6 +8,10 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
+                sh '''
+                    docker version
+                    docker compose version
+                '''
             }
         }
         stage('Registry login') {
