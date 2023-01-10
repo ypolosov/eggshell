@@ -8,6 +8,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
+                sh 'npm install -g @devcontainers/cli'
             }
         }
         stage('Registry login') {
