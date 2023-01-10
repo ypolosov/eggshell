@@ -27,7 +27,6 @@ pipeline {
               	dockerfile {
                 	dir '.devcontainer'
                     filename 'Dockerfile.dev-container'
-                    args '-v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/DEV/GITS/eggshell:/workspace'
                 }
             }
             steps {
