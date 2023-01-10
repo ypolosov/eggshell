@@ -1,6 +1,6 @@
 pipeline {
     agent { 
-        dockerfile {
+        docker {
             image 'mcr.microsoft.com/devcontainers/typescript-node:16'
             args '-v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker'
         }
