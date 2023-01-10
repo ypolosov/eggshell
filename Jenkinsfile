@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
     environment {
         PROJECT_DIR = 'backend'
     }
@@ -30,7 +30,6 @@ pipeline {
             }
             steps {
                 echo 'Hello Ci'
-                sh 'npm install -g @devcontainers/cli'
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
                         mkdir -p $HOME/.ssh
