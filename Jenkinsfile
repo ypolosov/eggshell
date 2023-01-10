@@ -24,8 +24,9 @@ pipeline {
         }
         stage('Ci') {
             agent {
-              	docker {
-                	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+              	dockerfile {
+                	dir '.devcontainer'
+                    filename 'Dockerfile.dev-container'
                     args '-v /home/ypolosov/.ssh:/home/node/.ssh'
                 }
             }
