@@ -27,23 +27,23 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
 
 # install docker
 # ARG DOCKER_CLI_VERSION=
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
-    && add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/debian \
-    $(lsb_release -cs) \
-    stable" \
-    && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    docker-ce-cli \
-    docker-compose-plugin \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && groupadd -r docker \
-    && usermod -aG docker jenkins
-
-# RUN curl -fsSL https://get.docker.com -o get-docker.sh \
-#     && sh get-docker.sh \
+# RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
+#     && add-apt-repository \
+#     "deb [arch=amd64] https://download.docker.com/linux/debian \
+#     $(lsb_release -cs) \
+#     stable" \
+#     && apt-get update \
+#     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+#     docker-ce-cli \
+#     docker-compose-plugin \
+#     && apt-get clean \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && groupadd -r docker \
 #     && usermod -aG docker jenkins
+
+RUN curl -fsSL https://get.docker.com -o get-docker.sh \
+    && sh get-docker.sh \
+    && usermod -aG docker jenkins
 # entrypoint is used to update docker gid and revert back to jenkins user
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
