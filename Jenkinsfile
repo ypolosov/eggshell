@@ -27,12 +27,17 @@ pipeline {
               	dockerfile {
                 	dir '.devcontainer'
                     filename 'Dockerfile.dev-container'
-                    args '-v /home/ypolosov/.ssh:/root/.ssh'
                 }
             }
             steps {
                 echo 'Hello Ci'
-                sh './agnostic-pipeline/stages/01_ci.sh'
+                withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
+                    sh '''
+                        mkdir -p $HOME/.ssh
+                        cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
+                        ./agnostic-pipeline/stages/01_ci.sh
+                    '''
+                }
             }
         }
         stage('Build') {
