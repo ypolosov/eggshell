@@ -5,6 +5,11 @@ pipeline {
     }
     stages {
         stage('Config') {
+            agent {
+              	docker {
+                	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+                }
+            }
             steps {
                 checkout scm
                 echo 'Hello Config'
