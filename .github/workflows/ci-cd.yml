@@ -19,6 +19,7 @@ jobs:
           docker info
           docker version
           docker compose version
+          docker-compose -v
 
       - name: Registry login
         run: |

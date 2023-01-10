@@ -12,6 +12,7 @@ pipeline {
                     docker info
                     docker version
                     docker compose version
+                    docker-compose -v
                 '''
             }
         }
