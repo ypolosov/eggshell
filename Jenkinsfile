@@ -23,18 +23,33 @@ pipeline {
             }
         }
         stage('Ci') {
+            agent {
+              	docker {
+                	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+                }
+            }
             steps {
                 echo 'Hello Ci'
                 sh './agnostic-pipeline/stages/01_ci.sh'
             }
         }
         stage('Build') {
+            agent {
+              	docker {
+                	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+                }
+            }
             steps {
                 echo 'Hello Build'
                 sh './agnostic-pipeline/stages/02_build.sh'
             }
         }
         stage('Test') {
+            agent {
+              	docker {
+                	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+                }
+            }
             steps {
                 echo 'Hello Test'
                 sh './agnostic-pipeline/stages/03_test.sh'
