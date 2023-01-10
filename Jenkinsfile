@@ -5,24 +5,32 @@ pipeline {
     }
     stages {
         stage('Config') {
+            steps {
+                checkout scm
+                echo 'Hello Config'
+            }
+        }
+        stage('Registry login') {
             environment { 
                 DOCKER_PASSWORD = credentials('docker-password')
             }
+            steps {
+                echo 'Hello Registry login'
+                sh '''
+                    export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+                    ./agnostic-pipeline/stages/01_login.sh
+                '''
+            }
+        }
+        stage('Ci') {
             agent {
               	docker {
                 	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
                 }
             }
             steps {
-                checkout scm
-                echo 'Hello Config'
-                sh 'npm install -g @devcontainers/cli'
-                echo 'Hello Registry login'
-                sh '''
-                    export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-                    ./agnostic-pipeline/stages/01_login.sh
-                '''
                 echo 'Hello Ci'
+                sh 'npm install -g @devcontainers/cli'
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
                         mkdir -p $HOME/.ssh
@@ -33,15 +41,6 @@ pipeline {
                 }
             }
         }
-        // stage('Registry login') {
-
-        //     steps {
-        //     }
-        // }
-        // stage('Ci') {
-        //     steps {
-        //     }
-        // }
         stage('Build') {
             agent {
               	docker {
