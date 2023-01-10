@@ -35,6 +35,7 @@ pipeline {
                     sh '''
                         mkdir -p $HOME/.ssh
                         cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
+                        chmod 600 $HOME/.ssh/id_rsa
                         ./agnostic-pipeline/stages/01_ci.sh
                     '''
                 }
