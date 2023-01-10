@@ -13,6 +13,8 @@ pipeline {
                     docker version
                     docker compose version
                     docker-compose -v
+                    node --version
+                    npm --version
                 '''
             }
         }
@@ -36,6 +38,8 @@ pipeline {
                         mkdir -p $HOME/.ssh
                         cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
                         chmod 600 $HOME/.ssh/id_rsa
+                        node --version
+                        npm --version
                         ./agnostic-pipeline/stages/01_ci.sh
                     '''
                 }
