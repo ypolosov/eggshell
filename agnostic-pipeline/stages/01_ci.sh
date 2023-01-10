@@ -12,5 +12,5 @@ source "${CONFIG_PATH}"
 
 echo "Install devcontainers/cli..."
 npm install -g @devcontainers/cli
-
+docker-compose -v
 devcontainer up --id-label ci-container=XXXXX --workspace-folder .

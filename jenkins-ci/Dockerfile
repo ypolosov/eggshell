@@ -44,6 +44,7 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \
     && sh get-docker.sh \
     && usermod -aG docker jenkins
+RUN curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sh
 # entrypoint is used to update docker gid and revert back to jenkins user
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
