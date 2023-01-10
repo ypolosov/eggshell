@@ -9,6 +9,7 @@ pipeline {
                 checkout scm
                 echo 'Hello Config'
                 sh '''
+                    docker info
                     docker version
                     docker compose version
                 '''
