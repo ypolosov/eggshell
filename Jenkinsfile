@@ -23,11 +23,6 @@ pipeline {
             }
         }
         stage('Ci') {
-            agent {
-              	docker {
-                	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
-                }
-            }
             steps {
                 echo 'Hello Ci'
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
