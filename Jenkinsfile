@@ -26,6 +26,7 @@ pipeline {
             agent {
               	docker {
                 	image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+                    args '-v ~/.ssh:/home/node/.ssh'
                 }
             }
             steps {
