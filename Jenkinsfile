@@ -27,7 +27,7 @@ pipeline {
               	dockerfile {
                 	dir '.devcontainer'
                     filename 'Dockerfile.dev-container'
-                    args '-v /home/ypolosov/.ssh:/home/node/.ssh'
+                    args '-v /home/ypolosov/.ssh:/root/.ssh'
                 }
             }
             steps {
