@@ -19,6 +19,12 @@ jobs:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
 
       - run:
+          name: Config
+          command: |
+            docker version
+            docker compose version
+
+      - run:
           name: Registry login
           command: |
             export DOCKER_PASSWORD="$DOCKER_PASSWORD"

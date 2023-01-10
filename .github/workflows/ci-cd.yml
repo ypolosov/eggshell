@@ -16,6 +16,8 @@ jobs:
       - name: Config
         run: |
           cat ./backend/.env >> $GITHUB_ENV
+          docker version
+          docker compose version
 
       - name: Registry login
         run: |
