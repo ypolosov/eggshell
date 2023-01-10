@@ -2,7 +2,7 @@ pipeline {
     agent { 
         docker {
             image 'sitespeedio/node:ubuntu-22.04-nodejs-16.15.0'
-            args '-v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -v /var/jenkins_home:/var/jenkins_home'
         }
     }
     environment {
