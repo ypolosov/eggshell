@@ -1,7 +1,9 @@
 pipeline {
     agent { 
-        docker {
-            image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+        dockerfile {
+            filename 'Dockerfile.dev-container'
+            dir '.devcontainer'
+            label 'docker'
         }
     }
     environment {
