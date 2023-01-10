@@ -1,8 +1,8 @@
 pipeline {
     agent { 
         docker {
-            image 'node:16'
-            args '-v /usr/bin/docker:/usr/bin/docker'
+            image 'mcr.microsoft.com/devcontainers/typescript-node:16'
+            args 'jenkins-home:/var/jenkins_home'
         }
     }
     environment {
