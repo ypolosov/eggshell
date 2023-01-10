@@ -33,15 +33,15 @@ pipeline {
                 }
             }
         }
-        stage('Registry login') {
+        // stage('Registry login') {
 
-            steps {
-            }
-        }
-        stage('Ci') {
-            steps {
-            }
-        }
+        //     steps {
+        //     }
+        // }
+        // stage('Ci') {
+        //     steps {
+        //     }
+        // }
         stage('Build') {
             agent {
               	docker {
