@@ -33,6 +33,7 @@ pipeline {
                 echo 'Hello Ci'
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
+                        pwd
                         mkdir -p $HOME/.ssh
                         cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
                         chmod 600 $HOME/.ssh/id_rsa
