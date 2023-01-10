@@ -25,6 +25,9 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true 
 
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - &&\
+    apt-get install -y nodejs
+
 # install docker
 # ARG DOCKER_CLI_VERSION=
 # RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
