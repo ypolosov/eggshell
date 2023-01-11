@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs "NodeJs"
-        python "Python"
+        jenkins.plugins.shiningpanda.tools.PythonInstallation "Python"
     }
     environment {
         PROJECT_DIR = 'backend'
