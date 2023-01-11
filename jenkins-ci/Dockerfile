@@ -30,6 +30,17 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh \
     && usermod -aG docker jenkins
 RUN curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sh
 
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    build-essential \
+    g++ \
+    libx11-dev \
+    libxkbfile-dev \
+    libsecret-1-dev \
+    python-is-python3 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 
 # entrypoint is used to update docker gid and revert back to jenkins user
 COPY entrypoint.sh /entrypoint.sh
