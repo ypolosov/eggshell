@@ -19,6 +19,8 @@ pipeline {
                     node --version
                     npm --version
                     git --version
+                    yarn --version
+                    python --version
                 '''
             }
         }
