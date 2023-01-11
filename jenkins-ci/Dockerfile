@@ -25,37 +25,12 @@ RUN dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true 
 
-ENV NODE_VERSION=16.13.0
-RUN apt install -y curl
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-ENV NVM_DIR=/home/jenkins/.nvm
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-RUN node --version
-RUN npm --version
-
-# install docker
-# ARG DOCKER_CLI_VERSION=
-# RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
-#     && add-apt-repository \
-#     "deb [arch=amd64] https://download.docker.com/linux/debian \
-#     $(lsb_release -cs) \
-#     stable" \
-#     && apt-get update \
-#     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-#     docker-ce-cli \
-#     docker-compose-plugin \
-#     && apt-get clean \
-#     && rm -rf /var/lib/apt/lists/* \
-#     && groupadd -r docker \
-#     && usermod -aG docker jenkins
-
 RUN curl -fsSL https://get.docker.com -o get-docker.sh \
     && sh get-docker.sh \
     && usermod -aG docker jenkins
 RUN curl -fL https://raw.githubusercontent.com/docker/compose-switch/master/install_on_linux.sh | sh
+
+
 # entrypoint is used to update docker gid and revert back to jenkins user
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
