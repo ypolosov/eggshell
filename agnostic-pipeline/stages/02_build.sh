@@ -10,7 +10,8 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
-npm install -g @devcontainers/cli
+docker-compose -v
+devcontainer --version
 
 sh ./agnostic-pipeline/stages/run-in-devcontainer.sh \
 echo "Build app"
