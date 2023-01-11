@@ -5,8 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./.devcontainer/Dockerfile.dev-container
-      # cache_from:
-      #   - docker.io/ypolosov/eggshell
+      cache_from:
+        - docker.io/ypolosov/eggshell
 
     container_name: eggshell-container
     init: true

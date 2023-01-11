@@ -13,4 +13,4 @@ source "${CONFIG_PATH}"
 echo "Install devcontainers/cli..."
 npm install -g @devcontainers/cli
 
-devcontainer up --id-label ci-container=XXXXX --workspace-folder .
+devcontainer up --remove-existing-container true --build-no-cache true --id-label ci-container=XXXXX --workspace-folder .
