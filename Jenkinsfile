@@ -12,17 +12,7 @@ pipeline {
             steps {
                 checkout scm
                 echo 'Hello Config'
-                sh '''
-                    docker info
-                    docker version
-                    docker compose version
-                    docker-compose -v
-                    node --version
-                    npm --version
-                    git --version
-                    yarn --version
-                    python --version
-                '''
+                sh './agnostic-pipeline/stages/config.sh'
             }
         }
         stage('Registry login') {
@@ -76,7 +66,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'ssh-private-key-file', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
                     sh '''
                         mkdir -p $HOME/.ssh
-                        cat ${SSH_PRIVATE_KEY} >> $HOME/.ssh/id_rsa
+                        cat ${SSH_PRIVATE_KEY} > $HOME/.ssh/id_rsa
                         export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa`
                         ./agnostic-pipeline/stages/05_deploy.sh
                     '''

@@ -16,10 +16,7 @@ jobs:
       - name: Config
         run: |
           cat ./backend/.env >> $GITHUB_ENV
-          docker info
-          docker version
-          docker compose version
-          docker-compose -v
+          ./agnostic-pipeline/stages/config.sh
 
       - name: Registry login
         run: |
