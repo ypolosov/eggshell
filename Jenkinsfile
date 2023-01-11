@@ -47,6 +47,7 @@ pipeline {
                         node --version
                         npm --version
                         ./agnostic-pipeline/stages/01_ci.sh
+                        ./agnostic-pipeline/stages/02_build.sh
                     '''
                 }
             }
