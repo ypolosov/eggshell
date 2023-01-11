@@ -17,3 +17,6 @@ docker-compose -v
 devcontainer --version
 
 devcontainer up --id-label ci-container=XXXXX --workspace-folder .
+
+docker ps
+
