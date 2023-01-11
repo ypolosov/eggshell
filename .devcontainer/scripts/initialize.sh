@@ -2,7 +2,7 @@
 
 #######
 # open issue https://github.com/microsoft/vscode-remote-release/issues/4024?ysclid=lbz6geepsn205383988
-eval `ssh-agent -s`
+# eval `ssh-agent -s`
 find ~/.ssh/ -type f -exec grep -l 'PRIVATE' {} \; | xargs ssh-add
 
 # #######
