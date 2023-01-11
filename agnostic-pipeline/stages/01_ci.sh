@@ -19,6 +19,6 @@ devcontainer --version
 devcontainer build --no-cache true --workspace-folder .
 devcontainer up --id-label ci-container=XXXXX --workspace-folder .
 docker ps
-devcontainer exec --id-label ci-container=XXXXX --workspace-folder . echo "Build app"
+devcontainer exec --container-id $(docker ps -aqf "name=eggshell-container") --id-label ci-container=XXXXX --workspace-folder . echo "Build app"
 
 
