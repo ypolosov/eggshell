@@ -13,4 +13,4 @@ source "${CONFIG_PATH}"
 echo "Install devcontainers/cli..."
 npm install -g @devcontainers/cli
 
-devcontainer up --remove-existing-container true --cache-from docker.io/ypolosov/eggshell --id-label ci-container=XXXXX --workspace-folder .
+devcontainer up --remove-existing-container true --build-no-cache true --cache-from docker.io/ypolosov/eggshell --id-label ci-container=XXXXX --workspace-folder .
