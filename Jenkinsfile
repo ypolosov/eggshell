@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         nodejs "NodeJs"
+        python "Python"
     }
     environment {
         PROJECT_DIR = 'backend'
