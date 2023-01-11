@@ -18,6 +18,7 @@ pipeline {
                     docker-compose -v
                     node --version
                     npm --version
+                    git --version
                 '''
             }
         }
