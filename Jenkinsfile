@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        // dockerTool "Docker"
+        // https://medium.com/appgambit/ci-cd-pipeline-for-a-nodejs-application-with-jenkins-fa3cc7fad13a
         nodejs "NodeJs"
     }
     environment {
