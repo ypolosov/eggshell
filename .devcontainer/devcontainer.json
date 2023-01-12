@@ -14,21 +14,26 @@
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/terraform:1": {}
 	},
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
-			"extensions": []
+			"extensions": [
+				"hashicorp.terraform"
+			]
 		}
 	},
 	"initializeCommand": ".devcontainer/scripts/initialize.sh || true",
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
 		5000,
-		9090
+		9090,
+		8000,
+		8080
 	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": ".devcontainer/scripts/post-create.sh || true",
