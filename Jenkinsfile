@@ -11,8 +11,6 @@ pipeline {
         stage('Config') {
             steps {
                 checkout scm
-                sh 'pwd'
-                sh 'ls -la'
                 echo 'Hello Config'
                 sh './agnostic-pipeline/stages/config.sh'
             }
@@ -52,8 +50,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
                 echo 'Hello Test'
                 sh './agnostic-pipeline/stages/03_test.sh'
             }

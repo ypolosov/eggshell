@@ -1,7 +1,7 @@
 version: "3.9"
 
 volumes:
-  jenkins-home:
+  jenkins-home-1:
 
 services:
   jenkins:
@@ -15,6 +15,6 @@ services:
         protocol: tcp
         mode: host
     volumes:
-      - jenkins-home:/var/jenkins_home
+      - jenkins-home-1:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     container_name: jenkins-docker
