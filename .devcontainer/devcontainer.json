@@ -6,9 +6,9 @@
 		"../docker-compose.yml",
 		"docker-compose.dev-container.yml"
 	],
-	// "mounts": [
-	// 	"source=${localEnv:HOME}/.aws,target=/home/node/.aws,type=bind,consistency=cached"
-	// ],
+	"mounts": [
+		"source=${localEnv:HOME}/.aws,target=/home/$USER/.aws,type=bind,consistency=cached"
+	],
 	"service": "eggshell",
 	"shutdownAction": "stopCompose",
 	"workspaceFolder": "/workspace",

@@ -26,7 +26,7 @@ services:
     volumes:
       # - .:/app
       - .:/workspace:cached
-      - $HOME/.aws:/home/jenkins/.aws
+      # - $HOME/.aws:/home/jenkins/.aws
     container_name: backend-container
     # networks:
     #   - eggshell-network
