@@ -20,3 +20,4 @@ npm --version
 git --version
 yarn --version
 python --version
+ls -la  ~/.aws
