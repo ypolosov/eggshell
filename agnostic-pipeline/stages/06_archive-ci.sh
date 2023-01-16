@@ -10,6 +10,7 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
+echo
 echo "Build and push devcontainer..."
 devcontainer build --workspace-folder . --image-name docker.io/ypolosov/eggshell
 docker push docker.io/ypolosov/eggshell

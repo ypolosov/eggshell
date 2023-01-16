@@ -10,6 +10,7 @@ CONFIG_PATH="$PROJECT_DIR/.env"
 cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
+echo
 echo "Install devcontainers/cli..."
 npm install -g @devcontainers/cli
 
