@@ -14,3 +14,19 @@ FROM mcr.microsoft.com/devcontainers/typescript-node:16
 USER node
 RUN echo 'Install Yandex Cloud CLI' \
     && curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+
+# # install AWS eksctl
+# RUN curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp \
+#     && sudo mv /tmp/eksctl /usr/local/bin \
+#     && eksctl version
+
+# # install aws-iam-authenticator
+# RUN cd /tmp \
+#     && curl -Lo aws-iam-authenticator https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.9/aws-iam-authenticator_0.5.9_linux_amd64 \
+#     && chmod +x ./aws-iam-authenticator \
+#     && mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$PATH:$HOME/bin \
+#     && echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc \
+#     && cd $HOME
+
+
+
