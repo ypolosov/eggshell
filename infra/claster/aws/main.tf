@@ -4,6 +4,14 @@ terraform {
       source = "hashicorp/aws"
     }
   }
+
+  cloud {
+    organization = "eggshell-organization"
+
+    workspaces {
+      name = "eggshell-aws"
+    }
+  }
 }
 
 provider "aws" {

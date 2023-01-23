@@ -4,6 +4,14 @@ terraform {
       source = "yandex-cloud/yandex"
     }
   }
+
+  cloud {
+    organization = "eggshell-organization"
+
+    workspaces {
+      name = "eggshell-yandex"
+    }
+  }
 }
 
 provider "yandex" {

@@ -10,6 +10,7 @@ npm --version
 git --version
 yarn --version
 python --version
+terraform -version
 aws --version
 aws sts get-caller-identity | cat
 yc --version
