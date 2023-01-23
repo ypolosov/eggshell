@@ -54,11 +54,11 @@ jobs:
       #     command: |
       #       ./agnostic-pipeline/stages/04_archive.sh
 
-      # - run:
-      #     name: Deploy
-      #     command: |
-      #       export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
-      #       ./agnostic-pipeline/stages/05_deploy.sh
+      - run:
+          name: Deploy
+          command: |
+            export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
+            ./agnostic-pipeline/stages/deploy-step.sh
 
       # - run:
       #     name: Archive CI
