@@ -4,13 +4,13 @@ set -e
 echo
 echo "Archiving Application"
 
-set -x
+# set -x
 
-CONFIG_PATH="$PROJECT_DIR/.env"
-cat "${CONFIG_PATH}"
-source "${CONFIG_PATH}"
+# CONFIG_PATH="$PROJECT_DIR/.env"
+# cat "${CONFIG_PATH}"
+# source "${CONFIG_PATH}"
 
-echo
+# echo
 IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_NAME}"
 
 docker build -t "${IMAGE}" -f "${ARCHIVE_APP_NAME}/Dockerfile.prod" "./${ARCHIVE_APP_NAME}"

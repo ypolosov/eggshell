@@ -17,6 +17,10 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "68:57:52:54:24:68:1c:45:ce:95:57:f3:ef:de:23:9a"
+      - run:
+          name: Ci
+          command: |
+            ./agnostic-pipeline/stages/ci-step.sh
 
       - run:
           name: Config
@@ -26,7 +30,7 @@ jobs:
             export YC_TOKEN="$YC_TOKEN"
             export YC_CLOUD_ID="$YC_CLOUD_ID"
             export YC_FOLDER_ID="$YC_FOLDER_ID"
-            ./agnostic-pipeline/stages/config.sh
+            ./agnostic-pipeline/stages/config-step.sh
 
       # - run:
       #     name: Registry login
@@ -34,10 +38,6 @@ jobs:
       #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
       #       ./agnostic-pipeline/stages/01_login.sh
 
-      # - run:
-      #     name: Ci
-      #     command: |
-      #       ./agnostic-pipeline/stages/01_ci.sh
 
       # - run:
       #     name: Build

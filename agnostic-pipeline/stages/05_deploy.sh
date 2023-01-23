@@ -4,13 +4,13 @@ set -e
 echo
 echo "Deploying Application"
 
-set -x
+# set -x
 
-CONFIG_PATH="$PROJECT_DIR/.env"
-cat "${CONFIG_PATH}"
-source "${CONFIG_PATH}"
+# CONFIG_PATH="$PROJECT_DIR/.env"
+# cat "${CONFIG_PATH}"
+# source "${CONFIG_PATH}"
 
-echo
+# echo
 IMAGE="${ARCHIVE_REGISTRY}/${ARCHIVE_ACCOUNT}/${ARCHIVE_APP_NAME}:${ARCHIVE_TAG_NAME}"
 
 export SSH_AUTH_SOCK=/tmp/ssh_agent.sock

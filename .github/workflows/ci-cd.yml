@@ -13,6 +13,10 @@ jobs:
       # - uses: docker://mcr.microsoft.com/devcontainers/typescript-node:16
       - uses: actions/checkout@v3
 
+      - name: Ci
+        run: |
+          ./agnostic-pipeline/stages/ci-step.sh
+
       - name: Config
         run: |
           cat ./backend/.env >> $GITHUB_ENV
@@ -21,16 +25,13 @@ jobs:
           export YC_TOKEN="${{secrets.YC_TOKEN}}"
           export YC_CLOUD_ID="${{secrets.YC_CLOUD_ID}}"
           export YC_FOLDER_ID="${{secrets.YC_FOLDER_ID}}"
-          ./agnostic-pipeline/stages/config.sh
+          ./agnostic-pipeline/stages/config-step.sh
 
       # - name: Registry login
       #   run: |
       #     export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
       #     ./agnostic-pipeline/stages/01_login.sh
 
-      # - name: Ci
-      #   run: |
-      #     ./agnostic-pipeline/stages/01_ci.sh
 
       # - name: Build
       #   run: |

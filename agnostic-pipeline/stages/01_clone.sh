@@ -4,7 +4,7 @@ set -e
 echo
 echo "Cloning Application"
 
-set -x
+# set -x
 
 git clone "${REPOSITORY_URL:?}" .
 
