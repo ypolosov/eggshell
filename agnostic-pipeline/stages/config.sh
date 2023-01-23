@@ -23,3 +23,5 @@ yarn --version
 python --version
 aws --version
 aws sts get-caller-identity | cat
+yc --version
+yc config profile list | cat

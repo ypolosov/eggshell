@@ -18,34 +18,37 @@ jobs:
           cat ./backend/.env >> $GITHUB_ENV
           export AWS_ACCESS_KEY_ID="${{secrets.AWS_ACCESS_KEY_ID}}"
           export AWS_SECRET_ACCESS_KEY="${{secrets.AWS_SECRET_ACCESS_KEY}}"
+          export YC_TOKEN="${{secrets.YC_TOKEN}}"
+          export YC_CLOUD_ID="${{secrets.YC_CLOUD_ID}}"
+          export YC_FOLDER_ID="${{secrets.YC_FOLDER_ID}}"
           ./agnostic-pipeline/stages/config.sh
 
-      - name: Registry login
-        run: |
-          export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
-          ./agnostic-pipeline/stages/01_login.sh
+      # - name: Registry login
+      #   run: |
+      #     export DOCKER_PASSWORD="${{secrets.DOCKER_PASSWORD}}"
+      #     ./agnostic-pipeline/stages/01_login.sh
 
-      - name: Ci
-        run: |
-          ./agnostic-pipeline/stages/01_ci.sh
+      # - name: Ci
+      #   run: |
+      #     ./agnostic-pipeline/stages/01_ci.sh
 
-      - name: Build
-        run: |
-          ./agnostic-pipeline/stages/02_build.sh
+      # - name: Build
+      #   run: |
+      #     ./agnostic-pipeline/stages/02_build.sh
 
-      - name: Test
-        run: |
-          ./agnostic-pipeline/stages/03_test.sh
+      # - name: Test
+      #   run: |
+      #     ./agnostic-pipeline/stages/03_test.sh
 
-      - name: Archive
-        run: |
-          ./agnostic-pipeline/stages/04_archive.sh
+      # - name: Archive
+      #   run: |
+      #     ./agnostic-pipeline/stages/04_archive.sh
 
-      - name: Deploy
-        run: |
-          export SSH_PRIVATE_KEY="${{secrets.SSH_PRIVATE_KEY}}"
-          ./agnostic-pipeline/stages/05_deploy.sh
+      # - name: Deploy
+      #   run: |
+      #     export SSH_PRIVATE_KEY="${{secrets.SSH_PRIVATE_KEY}}"
+      #     ./agnostic-pipeline/stages/05_deploy.sh
 
-      - name: Archive CI
-        run: |
-          ./agnostic-pipeline/stages/06_archive-ci.sh
+      # - name: Archive CI
+      #   run: |
+      #     ./agnostic-pipeline/stages/06_archive-ci.sh

@@ -23,41 +23,44 @@ jobs:
           command: |
             export AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
             export AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+            export YC_TOKEN="$YC_TOKEN"
+            export YC_CLOUD_ID="$YC_CLOUD_ID"
+            export YC_FOLDER_ID="$YC_FOLDER_ID"
             ./agnostic-pipeline/stages/config.sh
 
-      - run:
-          name: Registry login
-          command: |
-            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-            ./agnostic-pipeline/stages/01_login.sh
+      # - run:
+      #     name: Registry login
+      #     command: |
+      #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+      #       ./agnostic-pipeline/stages/01_login.sh
 
-      - run:
-          name: Ci
-          command: |
-            ./agnostic-pipeline/stages/01_ci.sh
+      # - run:
+      #     name: Ci
+      #     command: |
+      #       ./agnostic-pipeline/stages/01_ci.sh
 
-      - run:
-          name: Build
-          command: |
-            ./agnostic-pipeline/stages/02_build.sh
+      # - run:
+      #     name: Build
+      #     command: |
+      #       ./agnostic-pipeline/stages/02_build.sh
 
-      - run:
-          name: Test
-          command: |
-            ./agnostic-pipeline/stages/03_test.sh
+      # - run:
+      #     name: Test
+      #     command: |
+      #       ./agnostic-pipeline/stages/03_test.sh
 
-      - run:
-          name: Archive
-          command: |
-            ./agnostic-pipeline/stages/04_archive.sh
+      # - run:
+      #     name: Archive
+      #     command: |
+      #       ./agnostic-pipeline/stages/04_archive.sh
 
-      - run:
-          name: Deploy
-          command: |
-            export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
-            ./agnostic-pipeline/stages/05_deploy.sh
+      # - run:
+      #     name: Deploy
+      #     command: |
+      #       export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
+      #       ./agnostic-pipeline/stages/05_deploy.sh
 
-      - run:
-          name: Archive CI
-          command: |
-            ./agnostic-pipeline/stages/06_archive-ci.sh
+      # - run:
+      #     name: Archive CI
+      #     command: |
+      #       ./agnostic-pipeline/stages/06_archive-ci.sh
