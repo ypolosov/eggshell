@@ -5,6 +5,7 @@ echo "Deploying Application"
 pwd
 ls -la
 cd ./infra/cluster/aws
+
 echo TFE_TOKEN=$TFE_TOKEN
 export TF_LOG=debug
 # Create .terraformrc with credential config for user
@@ -15,6 +16,6 @@ credentials "app.terraform.io" {
 EOL
 cat ~/.terraformrc
 
-# terraform init
+terraform init
 
 terraform apply -auto-approve
