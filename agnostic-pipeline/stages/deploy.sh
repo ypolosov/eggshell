@@ -15,6 +15,6 @@ credentials "app.terraform.io" {
 EOL
 cat ~/.terraformrc
 
-terraform init
+# terraform init
 
 terraform apply -auto-approve
