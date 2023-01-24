@@ -14,4 +14,4 @@ echo "Ci Application"
 echo "Install devcontainers/cli..."
 npm install -g @devcontainers/cli
 
-devcontainer up  --remote-env "TFE_TOKEN=$TFE_TOKEN" --remove-existing-container false --build-no-cache false --cache-from docker.io/ypolosov/eggshell --id-label ci-container=XXXXX --workspace-folder .
+devcontainer up --remove-existing-container false --build-no-cache false --cache-from docker.io/ypolosov/eggshell --id-label ci-container=XXXXX --workspace-folder .

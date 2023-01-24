@@ -6,4 +6,4 @@ cat "${CONFIG_PATH}"
 source "${CONFIG_PATH}"
 
 echo
-devcontainer exec --container-id $(docker ps -aqf "name=eggshell-container") --id-label ci-container=XXXXX --workspace-folder . $@
+devcontainer exec --remote-env "TFE_TOKEN=$TFE_TOKEN" --container-id $(docker ps -aqf "name=eggshell-container") --id-label ci-container=XXXXX --workspace-folder . $@
