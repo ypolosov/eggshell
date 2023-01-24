@@ -4,7 +4,8 @@ echo "Deploying Application"
 
 pwd
 ls -la
-cd ./infra/cluster/aws
+# cd ./infra/cluster/aws
+cd ./infra/cluster/yandex
 
 echo TFE_TOKEN=$TFE_TOKEN
 export TF_LOG=debug
