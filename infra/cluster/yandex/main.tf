@@ -15,31 +15,51 @@ terraform {
 }
 
 provider "yandex" {
-  zone = var.zone
 }
 
-resource "yandex_compute_instance" "default" {
-  name        = "test-instance"
-  platform_id = "standard-v1" # тип процессора (Intel Broadwell)
 
-  metadata = {
-    ssh-keys = "ubuntu:${var.ssh_public_key}"
-  }
-
-  resources {
-    core_fraction = 5 # Гарантированная доля vCPU
-    cores         = 2 # vCPU
-    memory        = 1 # RAM
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = data.yandex_compute_image.last_ubuntu.id # ОС (Ubuntu, 22.04 LTS)
+resource "yandex_kubernetes_cluster" "simple-cluster" {
+  network_id = data.yandex_vpc_network.default.id
+  master {
+    zonal {
+      zone      = yandex_vpc_subnet.simple-subnet.zone
+      subnet_id = yandex_vpc_subnet.simple-subnet.id
     }
   }
+  service_account_id      = yandex_iam_service_account.simple-service-account.id
+  node_service_account_id = yandex_iam_service_account.simple-service-account.id
+  depends_on = [
+    yandex_resourcemanager_folder_iam_binding.editor,
+    yandex_resourcemanager_folder_iam_binding.images-puller
+  ]
+}
 
-  network_interface {
-    subnet_id = data.yandex_vpc_subnet.default_a.subnet_id # одна из дефолтных подсетей
-    nat       = true                                       # автоматически установить динамический ip
-  }
+
+resource "yandex_vpc_subnet" "simple-subnet" {
+  v4_cidr_blocks = ["10.5.0.0/16"]
+  zone           = var.zone
+  network_id     = data.yandex_vpc_network.default.id
+}
+
+resource "yandex_iam_service_account" "simple-service-account" {
+  name        = "simple-service-account"
+  description = "<service account description>"
+}
+
+resource "yandex_resourcemanager_folder_iam_binding" "editor" {
+  # Service account to be assigned "editor" role.
+  folder_id = data.yandex_resourcemanager_folder.eggshell-folder.id
+  role      = "editor"
+  members = [
+    "serviceAccount:${yandex_iam_service_account.simple-service-account.id}"
+  ]
+}
+
+resource "yandex_resourcemanager_folder_iam_binding" "images-puller" {
+  # Service account to be assigned "container-registry.images.puller" role.
+  folder_id = data.yandex_resourcemanager_folder.eggshell-folder.id
+  role      = "container-registry.images.puller"
+  members = [
+    "serviceAccount:${yandex_iam_service_account.simple-service-account.id}"
+  ]
 }
