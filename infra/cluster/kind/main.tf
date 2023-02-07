@@ -58,13 +58,13 @@ resource "helm_release" "argocd" {
   create_namespace = true
 
 }
-resource "helm_release" "backend" {
-  name = "backend"
+resource "helm_release" "apps" {
+  name = "apps"
 
   depends_on = [
     helm_release.argocd
   ]
-  chart     = "./backend"
+  chart     = "./apps"
   namespace = "argocd"
 
 }
