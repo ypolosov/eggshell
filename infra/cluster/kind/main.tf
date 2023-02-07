@@ -64,8 +64,7 @@ resource "helm_release" "apps" {
   depends_on = [
     helm_release.argocd
   ]
-  chart     = "./apps"
-  namespace = "argocd"
+  chart = "./apps"
 
 }
 
