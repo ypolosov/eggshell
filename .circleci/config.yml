@@ -44,11 +44,17 @@ jobs:
       - run:
           name: Build
           command: |
+            export PROJECT_DIR=backend
+            ./agnostic-pipeline/stages/02_build.sh
+            export PROJECT_DIR=frontend
             ./agnostic-pipeline/stages/02_build.sh
 
       - run:
           name: Test
           command: |
+            export PROJECT_DIR=backend
+            ./agnostic-pipeline/stages/03_test.sh
+            export PROJECT_DIR=frontend
             ./agnostic-pipeline/stages/03_test.sh
 
       - run:
