@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "backend.fullname" . }}
+  name: {{ template "frontend.fullname" . }}
   labels:
-    app: {{ template "backend.name" . }}
-    chart: {{ template "backend.chart" . }}
+    app: {{ template "frontend.name" . }}
+    chart: {{ template "frontend.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
@@ -12,12 +12,12 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: {{ template "backend.name" . }}
+      app: {{ template "frontend.name" . }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "backend.name" . }}
+        app: {{ template "frontend.name" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
