@@ -37,6 +37,8 @@ jobs:
           name: Registry login
           command: |
             export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+            export ARCHIVE_REGISTRY=docker.io
+            export ARCHIVE_ACCOUNT=ypolosov
             ./agnostic-pipeline/stages/01_login.sh
 
       - run:
