@@ -7,8 +7,8 @@ jobs:
   pipeline-job:
     machine:
       image: ubuntu-2204:2022.04.2
-    environment:
-      PROJECT_DIR: backend
+    # environment:
+    #   PROJECT_DIR: backend
     # resource_class: small
     steps:
       - checkout
@@ -33,33 +33,35 @@ jobs:
             export YC_FOLDER_ID="$YC_FOLDER_ID"
             ./agnostic-pipeline/stages/config-step.sh
 
-      # - run:
-      #     name: Registry login
-      #     command: |
-      #       export DOCKER_PASSWORD="$DOCKER_PASSWORD"
-      #       ./agnostic-pipeline/stages/01_login.sh
-
-
-      # - run:
-      #     name: Build
-      #     command: |
-      #       ./agnostic-pipeline/stages/02_build.sh
-
-      # - run:
-      #     name: Test
-      #     command: |
-      #       ./agnostic-pipeline/stages/03_test.sh
-
-      # - run:
-      #     name: Archive
-      #     command: |
-      #       ./agnostic-pipeline/stages/04_archive.sh
+      - run:
+          name: Registry login
+          command: |
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
+            ./agnostic-pipeline/stages/01_login.sh
 
       - run:
-          name: Deploy
+          name: Build
           command: |
-            export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
-            ./agnostic-pipeline/stages/deploy-step.sh
+            ./agnostic-pipeline/stages/02_build.sh
+
+      - run:
+          name: Test
+          command: |
+            ./agnostic-pipeline/stages/03_test.sh
+
+      - run:
+          name: Archive
+          command: |
+            export PROJECT_DIR=backend
+            ./agnostic-pipeline/stages/04_archive.sh
+            export PROJECT_DIR=frontend
+            ./agnostic-pipeline/stages/04_archive.sh
+
+      # - run:
+      #     name: Deploy
+      #     command: |
+      #       export SSH_PRIVATE_KEY=`cat $HOME/.ssh/id_rsa_6857525424681c45ce9557f3efde239a`
+      #       ./agnostic-pipeline/stages/deploy-step.sh
 
       # - run:
       #     name: Archive CI
