@@ -51,7 +51,7 @@ provider "kubectl" {
 
 resource "helm_release" "apps" {
   name      = "apps"
-  chart     = "./apps"
+  chart     = "./helm"
   namespace = "argocd"
   # create_namespace = true
 
