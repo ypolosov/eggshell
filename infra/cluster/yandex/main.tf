@@ -27,6 +27,7 @@ resource "yandex_kubernetes_cluster" "yandex-k8s-cluster" {
       subnet_id = data.yandex_vpc_subnet.default.id
     }
     public_ip = true
+    version   = "1.22"
   }
   service_account_id      = yandex_iam_service_account.simple-service-account.id
   node_service_account_id = yandex_iam_service_account.simple-service-account.id
@@ -57,4 +58,71 @@ resource "yandex_resourcemanager_folder_iam_binding" "images-puller" {
   members = [
     "serviceAccount:${yandex_iam_service_account.simple-service-account.id}"
   ]
+}
+
+resource "yandex_kubernetes_node_group" "my_node_group" {
+  cluster_id  = yandex_kubernetes_cluster.yandex-k8s-cluster.id
+  name        = "yandex-k8s-cluster-node-group"
+  description = "Some description is here"
+  version     = "1.22"
+
+  labels = {
+    "key" = "value"
+  }
+
+  instance_template {
+    platform_id = "standard-v1"
+
+    network_interface {
+      nat        = true
+      subnet_ids = ["${data.yandex_vpc_subnet.default.id}"]
+    }
+
+    resources {
+      memory = 2
+      cores  = 2
+    }
+
+    boot_disk {
+      type = "network-hdd"
+      size = 64
+    }
+
+    scheduling_policy {
+      preemptible = false
+    }
+
+    container_runtime {
+      type = "containerd"
+    }
+  }
+
+  scale_policy {
+    fixed_scale {
+      size = 1
+    }
+  }
+
+  allocation_policy {
+    location {
+      zone = data.yandex_vpc_subnet.default.zone
+    }
+  }
+
+  maintenance_policy {
+    auto_upgrade = true
+    auto_repair  = true
+
+    maintenance_window {
+      day        = "monday"
+      start_time = "15:00"
+      duration   = "3h"
+    }
+
+    maintenance_window {
+      day        = "friday"
+      start_time = "10:00"
+      duration   = "4h30m"
+    }
+  }
 }
