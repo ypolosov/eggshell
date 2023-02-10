@@ -18,13 +18,15 @@ provider "yandex" {
 }
 
 
-resource "yandex_kubernetes_cluster" "simple-cluster" {
+resource "yandex_kubernetes_cluster" "yandex-k8s-cluster" {
+  name       = "yandex-k8s-cluster"
   network_id = data.yandex_vpc_network.default.id
   master {
     zonal {
-      zone      = yandex_vpc_subnet.simple-subnet.zone
-      subnet_id = yandex_vpc_subnet.simple-subnet.id
+      zone      = data.yandex_vpc_subnet.default.zone
+      subnet_id = data.yandex_vpc_subnet.default.id
     }
+    public_ip = true
   }
   service_account_id      = yandex_iam_service_account.simple-service-account.id
   node_service_account_id = yandex_iam_service_account.simple-service-account.id
@@ -34,16 +36,9 @@ resource "yandex_kubernetes_cluster" "simple-cluster" {
   ]
 }
 
-
-resource "yandex_vpc_subnet" "simple-subnet" {
-  v4_cidr_blocks = ["10.5.0.0/16"]
-  zone           = var.zone
-  network_id     = data.yandex_vpc_network.default.id
-}
-
 resource "yandex_iam_service_account" "simple-service-account" {
   name        = "simple-service-account"
-  description = "<service account description>"
+  description = "There is a service account description"
 }
 
 resource "yandex_resourcemanager_folder_iam_binding" "editor" {
