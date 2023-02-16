@@ -42,18 +42,17 @@ provider "kubectl" {
 
 # ############################################
 
-# resource "kubernetes_namespace" "eggshell" {
-#   metadata {
-#     name = "eggshell"
-#   }
+
+# resource "helm_release" "apps" {
+#   name      = "apps"
+#   chart     = "./helm"
+#   namespace = "argocd"
+
 # }
-
-
-resource "helm_release" "apps" {
-  name      = "apps"
-  chart     = "./helm"
+resource "helm_release" "apps-blue-green" {
+  name      = "apps-blue-green"
+  chart     = "./helm-blue-green"
   namespace = "argocd"
-  # create_namespace = true
 
 }
 

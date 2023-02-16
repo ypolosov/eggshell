@@ -30,6 +30,21 @@ resource "helm_release" "argocd" {
 
 }
 
+resource "helm_release" "argo-rollouts" {
+  name = "argo-rollouts"
+
+  repository       = "https://argoproj.github.io/argo-helm"
+  chart            = "argo-rollouts"
+  namespace        = "argo-rollouts"
+  version          = "2.22.2"
+  create_namespace = true
+
+  set {
+    name  = "dashboard.enabled"
+    value = "true"
+  }
+}
+
 resource "helm_release" "k8s-dashboard" {
   name = "k8s-dashboard"
 
