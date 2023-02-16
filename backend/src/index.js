@@ -3,7 +3,7 @@ const http = require('http');
 const hostname = '0.0.0.0';
 const port = 5000;
 const appName = 'Backend';
-const version = '0.1.1';
+const version = '0.1.0';
 
 const server = http.createServer((req, res) => {
 
