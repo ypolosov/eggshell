@@ -14,8 +14,8 @@ spec:
         app: backend-blue-green
     spec:
       containers:
-      - name: rollouts-demo
-        image: docker.io/ypolosov/backend:0.1.1
+      - name: backend-blue-green
+        image: docker.io/ypolosov/backend:0.1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
