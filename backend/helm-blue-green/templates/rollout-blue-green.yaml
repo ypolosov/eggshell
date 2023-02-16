@@ -18,7 +18,7 @@ spec:
         image: docker.io/ypolosov/backend:0.1.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
   strategy:
     blueGreen: 
       # activeService specifies the service to update with the new template hash at time of promotion.
