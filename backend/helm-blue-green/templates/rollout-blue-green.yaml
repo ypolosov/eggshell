@@ -1,35 +1,57 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: backend-blue-green
+  name: {{ template "backend-blue-green.fullname" . }}
+  labels:
+    app: {{ template "backend-blue-green.name" . }}
+    chart: {{ template "backend-blue-green.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
-  replicas: 2
-  revisionHistoryLimit: 2
+  replicas: {{ .Values.replicaCount }}
+  strategy:
+    blueGreen: 
+      activeService: {{ template "backend-blue-green.fullname" . }}-active
+      previewService: {{ template "backend-blue-green.fullname" . }}-preview
+      autoPromotionEnabled: false
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: backend-blue-green
+      app: {{ template "backend-blue-green.name" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: backend-blue-green
+        app: {{ template "backend-blue-green.name" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
-      - name: backend-blue-green
-        image: docker.io/ypolosov/backend:0.1.0
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 5000
-  strategy:
-    blueGreen: 
-      # activeService specifies the service to update with the new template hash at time of promotion.
-      # This field is mandatory for the blueGreen update strategy.
-      activeService: backend-blue-green-active
-      # previewService specifies the service to update with the new template hash before promotion.
-      # This allows the preview stack to be reachable without serving production traffic.
-      # This field is optional.
-      previewService: backend-blue-green-preview
-      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
-      # immediately before the promotion. If omitted, the default behavior is to promote the new
-      # stack as soon as the ReplicaSet are completely ready/available.
-      # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
-      autoPromotionEnabled: false
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
