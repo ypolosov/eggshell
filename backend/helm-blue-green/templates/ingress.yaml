@@ -13,4 +13,5 @@ spec:
         backend:
           service:
             name: backend-blue-green-active
-            port: http
+            port:
+              number: 80
