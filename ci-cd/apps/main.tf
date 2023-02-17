@@ -55,9 +55,16 @@ provider "kubectl" {
 #   namespace = "argocd"
 
 # }
-resource "helm_release" "apps-canary" {
-  name      = "apps-canary"
-  chart     = "./helm-canary"
+# resource "helm_release" "apps-canary" {
+#   name      = "apps-canary"
+#   chart     = "./helm-canary"
+#   namespace = "argocd"
+
+# }
+
+resource "helm_release" "apps-experiment" {
+  name      = "apps-experiment"
+  chart     = "./helm-experiment"
   namespace = "argocd"
 
 }
