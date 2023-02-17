@@ -2,8 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: backend-canary-active
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - host: hello.backend-canary-active.com
@@ -16,3 +14,4 @@ spec:
             name: backend-canary-active
             port:
               number: 5000
+  ingressClassName: nginx
