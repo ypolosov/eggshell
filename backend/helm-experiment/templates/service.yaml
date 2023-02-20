@@ -1,26 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: purple
+  name: rollout-weather-svc
 spec:
-  ports:
-  - port: 80
-    targetPort: http
-    protocol: TCP
-    name: http
   selector:
-    color: purple
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: orange
-spec:
+    app: rollout-experiment
   ports:
-  - port: 80
-    targetPort: http
-    protocol: TCP
-    name: http
-  selector:
-    color: orange
+    - protocol: "TCP"
+      port: 80
+      targetPort: 5000
+  type: NodePort
