@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: docker.io/atulinfracloud/weathersample:v1
+        image: docker.io/atulinfracloud/weathersample:v2
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
