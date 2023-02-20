@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: rollout-experiment
+  name: backend-experiment
 spec:
   replicas: 2
   strategy:
@@ -29,15 +29,15 @@ spec:
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: rollout-experiment
+      app: backend-experiment
   template:
     metadata:
       labels:
-        app: rollout-experiment
+        app: backend-experiment
     spec:
       containers:
-      - name: rollouts-demo
-        image: docker.io/atulinfracloud/weathersample:v2
+      - name: backend-experiment
+        image: docker.io/ypolosov/backend:0.1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
