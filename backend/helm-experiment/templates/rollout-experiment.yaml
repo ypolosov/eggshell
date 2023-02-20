@@ -6,6 +6,8 @@ spec:
   replicas: 2
   strategy:
     canary:
+      canaryService: backend-experivent-preview
+      stableService: backend-experiment-active
       steps:
       - setWeight: 20
       - pause: {duration: 10}
