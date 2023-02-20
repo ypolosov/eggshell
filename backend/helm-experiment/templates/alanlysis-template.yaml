@@ -8,5 +8,5 @@ spec:
    successCondition: result.completed == true # Change this value to `result.completed == false` to fail the test
    provider:
      web:
-       url: "https://jsonplaceholder.typicode.com/todos/4" # URL returns a JSON object with completed being one of the values, it returns true by default
+       url: "https://jsonplaceholder.typicode.com/todos/3" # URL returns a JSON object with completed being one of the values, it returns true by default
        timeoutSeconds: 10
