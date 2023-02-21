@@ -49,12 +49,12 @@ provider "kubectl" {
 #   namespace = "argocd"
 
 # }
-# resource "helm_release" "apps-blue-green" {
-#   name      = "apps-blue-green"
-#   chart     = "./helm-blue-green"
-#   namespace = "argocd"
+resource "helm_release" "apps-blue-green" {
+  name      = "apps-blue-green"
+  chart     = "./helm-blue-green"
+  namespace = "argocd"
 
-# }
+}
 # resource "helm_release" "apps-canary" {
 #   name      = "apps-canary"
 #   chart     = "./helm-canary"
@@ -62,11 +62,11 @@ provider "kubectl" {
 
 # }
 
-resource "helm_release" "apps-experiment" {
-  name      = "apps-experiment"
-  chart     = "./helm-experiment"
-  namespace = "argocd"
+# resource "helm_release" "apps-experiment" {
+#   name      = "apps-experiment"
+#   chart     = "./helm-experiment"
+#   namespace = "argocd"
 
-}
+# }
 
 
