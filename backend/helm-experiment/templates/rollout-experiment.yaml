@@ -6,8 +6,6 @@ spec:
   replicas: 2
   strategy:
     canary:
-      canaryService: backend-experiment-preview
-      stableService: backend-experiment-active
       steps:
       - setWeight: 20
       - pause: {duration: 10}
@@ -39,7 +37,7 @@ spec:
     spec:
       containers:
       - name: backend-experiment
-        image: docker.io/ypolosov/backend:0.1.0
+        image: docker.io/ypolosov/backend:0.1.1
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
