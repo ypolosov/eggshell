@@ -6,7 +6,7 @@ replicaCount: 3
 
 image:
   repository: docker.io/ypolosov/backend
-  tag: 0.1.1
+  tag: 0.1.0
   pullPolicy: Always
 
 service:
